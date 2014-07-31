@@ -10,3 +10,5 @@ YRS 2014 Project - Monmouthshire Centre
 <li>Ben Hope - App Developer</li>
 <li>Melody Perry - Designer and Project Artist.</li>
 </ul>
+
+This project's original repository can be found here: <a href="http://github.com/HarriBellThomas/cudl-prototype">HarriBellThomas/cudl-prototype</a>.
