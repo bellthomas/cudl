@@ -19,23 +19,33 @@
         android:text="@string/settings" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:text="@string/editContacts"
-        android:onClick="editContacts" />
-
-    <Button
         android:id="@+id/button1"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_alignLeft="@+id/button2"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="82dp"
-        android:text="@string/textBody"
-        android:onClick="editTextBody" />
+        android:layout_marginTop="44dp"
+        android:onClick="editTextBody"
+        android:text="@string/textBody" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="43dp"
+        android:onClick="enterMedicInfo"
+        android:text="@string/enterMedicInfo" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:onClick="editContacts"
+        android:text="@string/editContacts" />
 
 </RelativeLayout>

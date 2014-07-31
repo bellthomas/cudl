@@ -33,9 +33,10 @@
     <string name="medication">Medication:</string>
     <string name="medicalCondition">Medical Condition:</string>
     <string name="ActivateHeartbeat">Activate Heartbeat</string>
-<string name="openMap">Open Map</string>
-<string name="SOSScreen1">Do not Panic! We have sent for help from your contacts and our server.</string>
-<string name="SOSScreen2">Click the map button below to get directions to the nearest hospital.</string>
-<string name="SOSScreen3">Click the medical information button to get your medical information for a helper.</string>
+    <string name="openMap">Open Map</string>
+    <string name="SOSScreen1">Do not Panic! We have sent for help from your contacts and our server.</string>
+    <string name="SOSScreen2">Click the map button below to get directions to the nearest hospital.</string>
+    <string name="SOSScreen3">Click the medical information button to get your medical information for a helper.</string>
+    <string name="enterMedicInfo">Enter Medical Information</string>
 
 </resources>

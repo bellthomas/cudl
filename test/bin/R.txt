@@ -249,12 +249,13 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050049
+int id action_settings 0x7f05004a
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
 int id button1 0x7f050043
 int id button2 0x7f050044
+int id button3 0x7f050045
 int id checkbox 0x7f05002d
 int id collapseActionView 0x7f05000d
 int id default_activity_button 0x7f050028
@@ -303,10 +304,10 @@ int id split_action_bar 0x7f05001e
 int id submit_area 0x7f050039
 int id tabMode 0x7f050002
 int id textView1 0x7f05003c
-int id textView2 0x7f050048
-int id textView3 0x7f050047
-int id textView4 0x7f050046
-int id textView5 0x7f050045
+int id textView2 0x7f050049
+int id textView3 0x7f050048
+int id textView4 0x7f050047
+int id textView5 0x7f050046
 int id title 0x7f05002b
 int id top_action_bar 0x7f050020
 int id up 0x7f050021
@@ -395,6 +396,7 @@ int string action_settings 0x7f0a000f
 int string app_name 0x7f0a000d
 int string button 0x7f0a0010
 int string editContacts 0x7f0a0015
+int string enterMedicInfo 0x7f0a0031
 int string hello_world 0x7f0a000e
 int string medicalCondition 0x7f0a002b
 int string medication 0x7f0a002a

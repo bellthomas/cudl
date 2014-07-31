@@ -43,4 +43,9 @@ public class Settings extends ActionBarActivity {
 		Intent intent = new Intent (this, TextBody.class);
 		startActivity(intent);
 }
-}
+	public void enterMedicInfo (View view) {
+		Intent intent = new Intent (this, SmsSend.class);
+		startActivity(intent);
+	}
+	}
+
