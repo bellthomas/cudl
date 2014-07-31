@@ -59,7 +59,7 @@ public class ServerUtil {
 		map.put("emie_parameters",params);		
 		String jString = JsonHelper.toString(map);
 		String encoded = URLEncoder.encode(jString);
-		return ServerUtil.visitURl("http://emergencie.hbt.io/api?emie_request="+encoded);
+		return ServerUtil.visitURl("http://api.cudl.io?emie_request="+encoded);
 	}
 	
 	public static String makeNearbyHospitalRequest(double latitude, double longitude) throws IOException{

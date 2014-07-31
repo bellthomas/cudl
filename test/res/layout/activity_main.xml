@@ -43,6 +43,7 @@
         android:layout_alignLeft="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="33dp"
-        android:onClick="openServerUtil" />
+        android:onClick="HeartBeatLauncher"
+        android:text="@string/ActivateHeartbeat" />
 
 </RelativeLayout>

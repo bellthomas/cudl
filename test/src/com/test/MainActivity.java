@@ -1,9 +1,9 @@
 package com.test;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.gsm.SmsManager;
@@ -11,11 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import com.test.services.HeartBeatIntentService;
+import com.test.services.LocationUtil;
+
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -29,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		LocationUtil.instance.EnableNormal();
 	}
 
 	@Override
@@ -51,6 +51,13 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 public void sendMessage (View view) {
+	try {
+		HeartBeatIntentService.heartbeat.SendPanicToServer("Harri", 'M',LocationUtil.instance.best.getLatitude(), LocationUtil.instance.best.getLongitude());
+	} catch (IOException e1) {
+		//e1.printStackTrace();
+	}
+	
+	
 	
 	//Getting message file
 	String temp="";
@@ -183,6 +190,9 @@ public void sendMessage (View view) {
     sms.sendTextMessage(_messageNumber4, null, textMessage, null, null);
     sms = SmsManager.getDefault();
     sms.sendTextMessage(_messageNumber5, null, textMessage, null, null);
+    
+    Intent intent = new Intent(this, SosSender.class);
+    startActivity(intent);
 	}
 //}
 
@@ -192,16 +202,12 @@ public void openMenu (View view) {
 	startActivity(intent);
 }
 
-public void openMap (View view){
-	Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-		    Uri.parse("http://maps.google.com/maps?saddr=My Location&daddr=Lydney & District Hospital, Grove Road, Lydney"));
-		startActivity(intent);
+public void HeartBeatLauncher (View view) {
+	Intent intent = new Intent(this, HeartBeatIntentService.class);
+	startService(intent);
 }
 
-public void openServerUtil (View view) {
-	Intent intent = new Intent(this, ServerUtil.class);
-	startActivity(intent);
-}
+
 
 }
 

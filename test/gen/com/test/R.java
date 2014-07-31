@@ -1078,6 +1078,9 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int ic_launcher=0x7f020057;
+        public static final int ic_pad_lock=0x7f020058;
+        public static final int pad_lock=0x7f020059;
+        public static final int red_e=0x7f02005a;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1091,7 +1094,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050045;
+        public static final int action_settings=0x7f050049;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1145,6 +1148,10 @@ containing a value of this type.
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
         public static final int textView1=0x7f05003c;
+        public static final int textView2=0x7f050048;
+        public static final int textView3=0x7f050047;
+        public static final int textView4=0x7f050046;
+        public static final int textView5=0x7f050045;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
@@ -1206,13 +1213,17 @@ containing a value of this type.
         public static final int activity_jsonhelper=0x7f03001a;
         public static final int activity_main=0x7f03001b;
         public static final int activity_map=0x7f03001c;
-        public static final int activity_send_message=0x7f03001d;
-        public static final int activity_server_util=0x7f03001e;
-        public static final int activity_settings=0x7f03001f;
-        public static final int activity_sms_send=0x7f030020;
-        public static final int activity_success=0x7f030021;
-        public static final int activity_text_body=0x7f030022;
-        public static final int support_simple_spinner_dropdown_item=0x7f030023;
+        public static final int activity_meddets=0x7f03001d;
+        public static final int activity_medical_details=0x7f03001e;
+        public static final int activity_send_message=0x7f03001f;
+        public static final int activity_server_util=0x7f030020;
+        public static final int activity_settings=0x7f030021;
+        public static final int activity_sms_send=0x7f030022;
+        public static final int activity_sos_screen=0x7f030023;
+        public static final int activity_sos_sender=0x7f030024;
+        public static final int activity_success=0x7f030025;
+        public static final int activity_text_body=0x7f030026;
+        public static final int support_simple_spinner_dropdown_item=0x7f030027;
     }
     public static final class menu {
         public static final int emergency_contacts=0x7f0c0000;
@@ -1220,18 +1231,27 @@ containing a value of this type.
         public static final int jsonhelper=0x7f0c0002;
         public static final int main=0x7f0c0003;
         public static final int map=0x7f0c0004;
-        public static final int send_message=0x7f0c0005;
-        public static final int server_util=0x7f0c0006;
-        public static final int settings=0x7f0c0007;
-        public static final int sms_send=0x7f0c0008;
-        public static final int success=0x7f0c0009;
-        public static final int text_body=0x7f0c000a;
+        public static final int meddets=0x7f0c0005;
+        public static final int medical_details=0x7f0c0006;
+        public static final int send_message=0x7f0c0007;
+        public static final int server_util=0x7f0c0008;
+        public static final int settings=0x7f0c0009;
+        public static final int sms_send=0x7f0c000a;
+        public static final int sos_screen=0x7f0c000b;
+        public static final int sos_sender=0x7f0c000c;
+        public static final int success=0x7f0c000d;
+        public static final int text_body=0x7f0c000e;
     }
     public static final class string {
+        public static final int ActivateHeartbeat=0x7f0a002c;
         public static final int ContactsButton=0x7f0a0021;
-        public static final int EmergencyContactsTitle=0x7f0a001a;
-        public static final int Success=0x7f0a001f;
-        public static final int TextBodyHint=0x7f0a001b;
+        public static final int EmergencyContactsTitle=0x7f0a0020;
+        public static final int Name=0x7f0a0029;
+        public static final int SOSScreen1=0x7f0a002e;
+        public static final int SOSScreen2=0x7f0a002f;
+        public static final int SOSScreen3=0x7f0a0030;
+        public static final int Success=0x7f0a001e;
+        public static final int TextBodyHint=0x7f0a001a;
         public static final int TextBodyTitle=0x7f0a0017;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
@@ -1278,19 +1298,26 @@ containing a value of this type.
         public static final int button=0x7f0a0010;
         public static final int editContacts=0x7f0a0015;
         public static final int hello_world=0x7f0a000e;
-        public static final int messageConfirm=0x7f0a001c;
+        public static final int medicalCondition=0x7f0a002b;
+        public static final int medication=0x7f0a002a;
+        public static final int messageConfirm=0x7f0a001b;
+        public static final int openMap=0x7f0a002d;
+        public static final int otherNotes=0x7f0a0028;
         public static final int settings=0x7f0a0013;
         public static final int textBody=0x7f0a0014;
         public static final int title=0x7f0a0016;
         public static final int title_activity_emergency_contacts=0x7f0a0018;
-        public static final int title_activity_heart_beat=0x7f0a001d;
+        public static final int title_activity_heart_beat=0x7f0a001c;
         public static final int title_activity_jsonhelper=0x7f0a0024;
         public static final int title_activity_map=0x7f0a0022;
+        public static final int title_activity_meddets=0x7f0a0027;
+        public static final int title_activity_medical_details=0x7f0a0026;
         public static final int title_activity_send_message=0x7f0a0011;
         public static final int title_activity_server_util=0x7f0a0023;
         public static final int title_activity_settings=0x7f0a0012;
-        public static final int title_activity_sms_send=0x7f0a0020;
-        public static final int title_activity_success=0x7f0a001e;
+        public static final int title_activity_sms_send=0x7f0a001f;
+        public static final int title_activity_sos_sender=0x7f0a0025;
+        public static final int title_activity_success=0x7f0a001d;
         public static final int title_activity_text_body=0x7f0a0019;
     }
     public static final class style {

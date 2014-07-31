@@ -38,32 +38,8 @@ public class SmsSend extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	 public void read(View view){
-	      try{
-	         FileInputStream fin = openFileInput("messageBody");
-	         int c;
-	         String temp="";
-	         while( (c = fin.read()) != -1){
-	            temp = temp + Character.toString((char)c);
-	         }
-	         String textMessage = temp.toString();
-	         Toast.makeText(getBaseContext(),"file read",
-	         Toast.LENGTH_SHORT).show();
 
-	      }catch(Exception e){
-
-	      }
-	   }
 		 
 			 
-			public void sayHello(View v) {
-				 
-			    String _messageNumber="+447933037883";
-			    String messageText = "";
-			 
-			    SmsManager sms = SmsManager.getDefault();
-			    sms.sendTextMessage(_messageNumber, null, messageText, null, null);
-			 
-			}
 	 
 	    }

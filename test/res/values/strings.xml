@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Emergencie</string>
+    <string name="app_name">cudl</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="button">S.O.S</string>
@@ -10,11 +10,10 @@
     <string name="settings">Settings</string>
     <string name="textBody">Edit Text Message Body</string>
     <string name="editContacts">Edit Emergency Recepients</string>
-    <string name="title">Emergencie</string>
+    <string name="title">cudl</string>
     <string name="TextBodyTitle">Edit Text Below</string>
     <string name="title_activity_emergency_contacts">Change Emergency Contacts</string>
     <string name="title_activity_text_body">Edit Emergency Text Body</string>
-    <string name="EmergencyContactsTitle">Edit/Add Contacts Below</string>
     <string name="TextBodyHint">Enter Text Here</string>
     <string name="messageConfirm">Confirm</string>
     <string name="title_activity_heart_beat">HeartBeat</string>
@@ -26,5 +25,17 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_server_util">ServerUtil</string>
     <string name="title_activity_jsonhelper">JSONHelper</string>
+    <string name="title_activity_sos_sender">SosSender</string>
+    <string name="title_activity_medical_details">MedicalDetails</string>
+    <string name="title_activity_meddets">Meddets</string>
+    <string name="otherNotes">Other Notes:</string>
+    <string name="Name">Name:</string>
+    <string name="medication">Medication:</string>
+    <string name="medicalCondition">Medical Condition:</string>
+    <string name="ActivateHeartbeat">Activate Heartbeat</string>
+<string name="openMap">Open Map</string>
+<string name="SOSScreen1">Do not Panic! We have sent for help from your contacts and our server.</string>
+<string name="SOSScreen2">Click the map button below to get directions to the nearest hospital.</string>
+<string name="SOSScreen3">Click the medical information button to get your medical information for a helper.</string>
 
 </resources>

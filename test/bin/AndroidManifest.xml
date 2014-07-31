@@ -23,13 +23,14 @@
     <uses-permission
         android:name="android.permission.READ_CONTACTS"
         android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.LOCATION_HARDWARE" android:maxSdkVersion="18"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_pad_lock"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <service android:name=".EmergencieHeartBeat" />
+        <service android:enabled="true"  android:name=".services.HeartBeatIntentService" />
 
         <activity
             android:name=".MainActivity"
@@ -79,6 +80,18 @@
         <activity
             android:name=".JSONHelper"
             android:label="@string/title_activity_jsonhelper" >
+        </activity>
+        <activity
+            android:name=".SosSender"
+            android:label="@string/title_activity_sos_sender" >
+        </activity>
+        <activity
+            android:name=".MedicalDetails"
+            android:label="@string/title_activity_medical_details" >
+        </activity>
+        <activity
+            android:name=".Meddets"
+            android:label="@string/title_activity_meddets" >
         </activity>
     </application>
 
