@@ -1,0 +1,114 @@
+Server Side Connectivity : http://developer.android.com/training/building-connectivity.html
+
+http://stackoverflow.com/questions/4205980/java-sending-http-parameters-via-post-method-easily
+
+SMS tut - http://www.mkyong.com/android/how-to-send-sms-message-in-android/
+
+http://hmkcode.com/android-send-json-data-to-server/
+
+
+
+<P>Returns a string representation of this UUID in the following format, as per 
+
+<A href="http://www.ietf.org/rfc/rfc4122.txt">RFC 4122</A>. <PRE>   
+
+
+s         UUID                   = time-low "-" time-mid "-"
+                                     time-high-and-version "-"
+                                     clock-seq-and-reserved
+                                     clock-seq-low "-" node
+            time-low               = 4hexOctet
+            time-mid               = 2hexOctet
+            time-high-and-version  = 2hexOctet
+            clock-seq-and-reserved = hexOctet
+            clock-seq-low          = hexOctet
+            node                   = 6hexOctet
+            hexOctet               = hexDigit hexDigit
+            hexDigit =
+                "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" /
+                "a" / "b" / "c" / "d" / "e" / "f" /
+                "A" / "B" / "C" / "D" / "E" / "F"
+</PRE>
+
+
+
+
+//Code for client > server communication
+
+
+
+@SuppressWarnings("deprecation")
+	public static String JsonToUrl(String url,Map<String,Object> data) throws JSONException, IOException { //Version for android
+		//Calculate the url to visit
+		
+		JSONObject json = new JSONObject();
+		for(String key : data.keySet()) {
+			json.put(key, data.get(key));
+		}
+		String encodedJSON = URLEncoder.encode(json.toString());
+		URL visit = new URL(url + encodedJSON);
+		
+		//Open connections
+		
+		URLConnection conn = visit.openConnection();
+		conn.connect();
+		InputStream stream = conn.getInputStream();
+		
+		//Read stream
+		
+		int nRead;
+		byte[] bytes = new byte[16384];
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+		while ((nRead = stream.read(bytes, 0, bytes.length)) != -1) {
+		  buffer.write(bytes, 0, nRead);
+		}
+		buffer.flush();
+		
+		//Parse response to string
+		
+		String out = "";
+		for(byte BYTE : buffer.toByteArray()) {
+			out = out + ((char)BYTE);
+		}
+		
+		
+		return out;
+	}
+
+
+
+//HeartBeat stuff
+
+
+public boolean runBeat() {
+		//TODO ensure location
+		//TEst
+		LocationUtil.DefaultPinPoint();
+		//TODO remove ping later and incorporate
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("emie_heartbeat",new long[] {uuid.getMostSignificantBits(),uuid.getLeastSignificantBits()});
+		data.put("emie_location",new double[] {LocationUtil.instance.best.getLatitude(),LocationUtil.instance.best.getLongitude()});
+		try {
+			String response = ServerUtil.JsonToUrl("http://emergencie.hbt.io/heartbeat?emie_heartbeat=", data);
+			
+			//TODO handle the response from the server
+			
+			return true;
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+JSON Test:
+
+[{"name":"Brunston Surgery","vicinity":"Cinder Hill, Coleford","distance":4.0153841246317},{"name":"A M Medical Services UK Ltd","vicinity":"Unit 6 Parkend Road, Lydney","distance":7.0395292195896},{"name":"Dilke Memorial Hospital","vicinity":"","distance":7.6085761510401},{"name":"Ross On Wye Community Hospital","vicinity":"Alton St, Ross-on-Wye","distance":7.9892454434831},{"name":"Haigh Engineering Limited","vicinity":"Alton Rd, Ross on Wye","distance":8.2390922994665},{"name":"Athrodax Healthcare","vicinity":"Unit 1, Hawthorn Business Park, Drybrook","distance":8.3414050062429},{"name":"Colliers Court","vicinity":"Latimer Rd, Cinderford","distance":8.7635380722421},{"name":"Family Planning","vicinity":"Lydney & District Hospital, Lydney","distance":9.3257234002515},{"name":"Lydney & District Hospital","vicinity":"Grove Rd, Lydney","distance":9.3286133000143},{"name":"Llanarth Court Hospital","vicinity":"Llanarth Court, Llanarth Raglan, Abergavenny","distance":9.464530202905}]
+
+
+

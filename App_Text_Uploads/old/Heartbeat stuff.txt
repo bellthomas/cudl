@@ -1,0 +1,82 @@
+package com.test.network;
+
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class HeartBeat implements Runnable{
+	
+	public static final String thread_id = "emergencie.threading.heartbead";
+	
+	public static Thread thread = null;
+	public static HeartBeat heartbeat= null;
+	
+	private boolean run = true;
+	
+	public UUID uuid;
+	
+	public HeartBeat(UUID id) {
+		uuid = id;
+	}
+	
+	
+	/**
+	 * 
+	 * @param uuid - supply a saved uuid per device,
+	 * This should be stored and always used after creation,
+	 * If not saved, get from UUID.randomUUID();
+	 */
+	public static void startThread(UUID uuid) {
+		heartbeat = new HeartBeat(uuid);
+		thread = new Thread(heartbeat);
+		thread.setName(thread_id);
+		thread.setDaemon(true);
+		thread.start(); //Start or run???
+	}
+	
+	public static void killThread() {
+		heartbeat.run = false;
+	}
+	
+	
+	public void run() {
+		while(run) {
+			beat();
+			try {
+				Thread.sleep(300000); //Wait
+			} catch (InterruptedException e) {
+				e.printStackTrace(); //Sleep stopped
+			}
+		}
+		
+	}
+
+	private void beat() {
+		//TODO Make sure LocationUtil is running updates in the background
+		
+		try {
+			String response = ServerUtil.visitURl(getURL());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//TODO handle response - maybe talk to server this way?
+	}
+	
+	
+	private String getURL() {
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("emie_heartbeat",new long[] {uuid.getMostSignificantBits(),uuid.getLeastSignificantBits()});
+		data.put("emie_location",new double[] {LocationUtil.instance.best.getLatitude(),LocationUtil.instance.best.getLongitude()});
+		@SuppressWarnings("deprecation")
+		String json = ServerUtil.jsonMap(data);
+		String encoded = URLEncoder.encode(json);
+		
+		return "http://emergencie.hbt.io/heartbeat?emieheartbeat="+encoded;
+	}
+	
+	
+	
+	
+}

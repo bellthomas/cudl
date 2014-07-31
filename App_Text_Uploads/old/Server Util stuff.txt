@@ -1,0 +1,103 @@
+package com.test.network;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Map;
+
+public class ServerUtil {
+	
+	/**
+	 * 
+	 * @param url - page to visit and return the result
+	 * @return string - data from visit
+	 * @throws IOException - on error visiting
+	 */
+	public static String visitURl(String url)throws IOException {
+		URL visit = new URL(url);
+		//Open connections
+		
+				URLConnection conn = visit.openConnection();
+				conn.connect();
+				InputStream stream = conn.getInputStream();
+				
+				//Read stream
+				
+				int nRead;
+				byte[] bytes = new byte[16384];
+				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+				while ((nRead = stream.read(bytes, 0, bytes.length)) != -1) {
+				  buffer.write(bytes, 0, nRead);
+				}
+				buffer.flush();
+				
+				//Parse response to string
+				
+				String out = "";
+				for(byte BYTE : buffer.toByteArray()) {
+					out = out + ((char)BYTE);
+				}
+				
+				
+				return out;
+	}
+	
+	
+	
+	
+	/**
+	 * Helper json string creation function to reduce required api level
+	 * 
+	 * @param map to convert to json string
+	 * @return string
+	 */
+	@SuppressWarnings("unchecked") //Throws exception on incorrect format of a map in map
+	public static String jsonMap(Map<String,Object> map) throws ClassCastException{
+		String out = "{";
+		for(int i = 0; i < map.size(); i++) {
+			out = out + "\"" + map.keySet().toArray()[i] + "\":";
+			Object obj = map.get(map.keySet().toArray()[i]);
+			if(obj instanceof Map<?,?>) {
+				out = out + jsonMap((Map<String,Object>) obj);
+			}else
+			if(obj.getClass().isArray()) {
+				out = out + "[";
+				for(Object it : toObjectArray(obj)) {
+					out = out + it.toString();
+				}
+				out = out.substring(0,out.length()- 1);
+				out = out + "]";
+			}else{
+				out = out + obj.toString();
+			}
+			out = out + ",";
+		}
+		
+		out = out.substring(0,out.length() - 1);
+		out = out + "}";
+		return out;
+	}
+	
+	
+	public static Object[] toObjectArray(Object array) {
+	    int length = Array.getLength(array);
+	    Object[] ret = new Object[length];
+	    for(int i = 0; i < length; i++)
+	        ret[i] = Array.get(array, i);
+	    return ret;
+	}
+	
+	public JSONObject[] getJsonsFromString(String string) throws JSONException{
+		String[] strings = string.split("%%%%");
+		JSONObject[] jsons = new JSONObject[strings.length];
+		for(int i = 0; i < strings.length; i++) {
+			jsons[i] = new JSONObject(strings[i]);
+		}
+		return jsons;
+	}
+	
+}

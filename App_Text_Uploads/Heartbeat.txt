@@ -1,0 +1,123 @@
+package com.test.network;
+
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
+
+public class HeartBeat implements Runnable{
+	
+	public static final String thread_id = "emergencie.threading.heartbeat";
+	public static final String AUTHENTICATION = "50ca9c8e-9991-4826-8d04-27f3c18aa912";
+	
+	
+	public static Thread thread = null;
+	public static HeartBeat heartbeat= null;
+	
+	public Random rand = new Random();
+	
+	private boolean run = true;
+	
+	public UUID uuid;
+	public UUID auth;
+	
+	public HeartBeat(UUID id,UUID authentication) {
+		System.out.println("UUID -> "+id.toString());
+		System.out.println("Token ->"+authentication.toString());
+		uuid = id;
+		auth = authentication;
+		run = true;
+	}
+	// id then auth-token, use request only once - then save after
+	public static UUID[] requestUUIDfromServer() throws IOException {
+		String response = ServerUtil.visitURl("http://emergencie.hbt.io/api/heartbeat/?emie_heartbeat_init=" + AUTHENTICATION);
+		Map<String,Object> data = JsonHelper.getListedJsonsWithCommaFormatting(response).get(0);
+		return new UUID[] {UUID.fromString((String)data.get("ID")),UUID.fromString((String)data.get("token"))};
+	}
+	
+	public String SendPanicToServer(String name, char gender,double latitude, double longitude) throws IOException {
+		String url = "http://emergencie.hbt.io/api/heartbeat?emie_heartbeat_set_alert=";
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("emie_id",new String[] {uuid.toString(),auth.toString()});
+		data.put("emie_personal", new String[] {name,new String(new char[] {gender})});
+		data.put("emie_location",new double[] {latitude,longitude});
+		return ServerUtil.visitURl(url + URLEncoder.encode(JsonHelper.toString(data)));
+	}
+	
+	public List<Map<String, Object>> getAlerts() throws IOException {
+		String url = "http://emergencie.hbt.io/api/heartbeat?emie_heartbeat_get_alerts=";
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("emie_id",new String[] {uuid.toString(),auth.toString()});
+		String result = ServerUtil.visitURl(url + URLEncoder.encode(JsonHelper.toString(data)));
+		return JsonHelper.getListedJsonsWithCommaFormatting(result);
+	}
+	
+	public void unregister() throws IOException {
+		String url = "http://emergencie.hbt.io/api/heartbeat?emie_heartbeat_remove=";
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("emie_id",new String[] {uuid.toString(),auth.toString()});
+		ServerUtil.visitURl(url + URLEncoder.encode(JsonHelper.toString(data)));
+	}
+	
+	/**
+	 * @TODO need to chage the implementation but that is the just
+	 * @param uuid - supply a saved uuid per device,
+	 * This should be stored and always used after creation,
+	 * If not saved, get from UUID.randomUUID();
+	 */
+	public static void startThread(UUID uuid,UUID token) {
+		heartbeat = new HeartBeat(uuid,token);
+		thread = new Thread(heartbeat);
+		thread.setName(thread_id);
+		thread.setDaemon(true);
+		thread.start(); //Start or run???
+	}
+	
+	public static void killThread() {
+		heartbeat.run = false;
+	}
+	
+	
+	public void run() {
+		while(run) {
+			beat();
+			try {
+				Thread.sleep(10000); //Wait
+			} catch (InterruptedException e) {
+				e.printStackTrace(); //Sleep stopped
+			}
+		}
+		
+	}
+
+	/**private**/public void beat() {
+		//TODO Make sure LocationUtil is running updates in the background
+		
+		try {
+			String response = ServerUtil.visitURl(getURL());
+			System.out.println(JsonHelper.toString(response));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//TODO handle response - maybe talk to server this way?
+	}
+	
+	
+	private String getURL() {
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("emie_id",new String[] {uuid.toString(),auth.toString()});
+		//data.put("emie_location",new double[] {LocationUtil.instance.best.getLatitude(),LocationUtil.instance.best.getLongitude()});
+		data.put("emie_location", new double[] {51.820878,-2.697587});
+		String json = JsonHelper.toString(data);
+		@SuppressWarnings("deprecation")
+		String encoded = URLEncoder.encode(json);
+		return "http://emergencie.hbt.io/api/heartbeat?emie_heartbeat="+encoded;
+	}
+	
+	
+	
+	
+}

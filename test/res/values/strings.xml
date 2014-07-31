@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Emergencie</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button">S.O.S</string>
+    <string name="title_activity_send_message">SendMessageActivity</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="settings">Settings</string>
+    <string name="textBody">Edit Text Message Body</string>
+    <string name="editContacts">Edit Emergency Recepients</string>
+    <string name="title">Emergencie</string>
+    <string name="TextBodyTitle">Edit Text Below</string>
+    <string name="title_activity_emergency_contacts">Change Emergency Contacts</string>
+    <string name="title_activity_text_body">Edit Emergency Text Body</string>
+    <string name="EmergencyContactsTitle">Edit/Add Contacts Below</string>
+    <string name="TextBodyHint">Enter Text Here</string>
+    <string name="messageConfirm">Confirm</string>
+    <string name="title_activity_heart_beat">HeartBeat</string>
+    <string name="title_activity_success">Success</string>
+    <string name="Success">Success!</string>
+    <string name="title_activity_sms_send">SmsSend</string>
+    <string name="EmergencyContactsTitle">Change Emergency Contacts</string>
+    <string name="ContactsButton">Add Contacts</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_server_util">ServerUtil</string>
+    <string name="title_activity_jsonhelper">JSONHelper</string>
+
+</resources>
